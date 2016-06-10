@@ -1,0 +1,17 @@
+{
+  "name": "QQmusic",
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "n",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4"
+  }
+}

@@ -1,0 +1,491 @@
+@charset "UTF-8";
+body, ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: #8B8B8B;
+  background-color: #FFF;
+  font-size: 12px;
+  line-height: 1.5em;
+  font-family: 'Arial','微软雅黑';
+}
+
+body::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+strong {
+  font-weight: normal;
+  display: inline-block;
+}
+
+.play-box {
+  width: 541px;
+  height: 661px;
+  position: relative;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transition: top .3s ease;
+}
+
+.play-box .play-top {
+  width: 100%;
+  height: 508px;
+  background: #666666;
+  overflow: auto;
+  transition: height .5s ease;
+}
+
+.play-box .play-top #title {
+  width: 100%;
+  height: 52px;
+  background: black;
+  line-height: 52px;
+  font-size: 16px;
+}
+
+.play-box .play-top #title a {
+  color: #fff;
+  margin-left: 30px;
+}
+
+.play-box .play-top #title span {
+  float: right;
+  color: #fff;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.play-box .play-top #title .span {
+  width: 20px;
+  height: 20px;
+  margin-top: 18px;
+  background: url(../images/player_bg.png) no-repeat -270px -100px;
+}
+
+.play-box .play-top .divsonglist {
+  width: auto;
+  height: auto;
+}
+
+.play-box .play-top .play_current {
+  color: #12EA6C;
+}
+
+.play-box .play-top ul li {
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  position: relative;
+}
+
+.play-box .play-top ul li .music-name {
+  width: 244px;
+  height: 100%;
+  margin-left: 40px;
+}
+
+.play-box .play-top ul li .singer-name {
+  width: 180px;
+  height: 100%;
+}
+
+.play-box .play-top ul li .music-time {
+  width: 24px;
+  height: 100%;
+}
+
+.play-box .play-top ul li .music-button {
+  width: 100px;
+  height: 50%;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 4;
+  display: none;
+  background: #000;
+}
+
+.play-box .play-top ul li .music-button strong {
+  width: 17px;
+  height: 23px;
+  margin-right: 5px;
+}
+
+.play-box .play-top ul li #heart {
+  background: url(../images/player_bg.png) no-repeat 0px -160px;
+}
+
+.play-box .play-top ul li #jiantou {
+  background: url(../images/player_bg.png) no-repeat -15px -160px;
+}
+
+.play-box .play-top ul li #xing {
+  background: url(../images/player_bg.png) no-repeat -65px -160px;
+}
+
+.play-box .play-top ul li #delete {
+  background: url(../images/player_bg.png) no-repeat -50px -123px;
+}
+
+.play-box .play-top ul li #delete:hover {
+  background: url(../images/player_bg.png) no-repeat -50px -141px;
+}
+
+.play-box .play-bottom {
+  width: 100%;
+  height: 113px;
+  background: black;
+  position: relative;
+  margin: auto;
+}
+
+.play-box .play-bottom .walk {
+  width: 100%;
+  height: 4px;
+  border-top: 1px solid #6ef4a6;
+  border-bottom: 1px solid #6ef4a6;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #333333;
+}
+
+.play-box .play-bottom #xia {
+  display: block;
+  width: 541px;
+  height: 4px;
+  position: relative;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.play-box .play-bottom #zhong {
+  width: 0;
+  height: 6px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  background: #12EA6C;
+  transition: width 1s linear;
+}
+
+.play-box .play-bottom #shang {
+  width: 9px;
+  height: 9px;
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: -2px;
+  z-index: 4;
+  background: white;
+  transition: left 1s linear;
+}
+
+.play-box .play-bottom #touxiang {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: white;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  overflow: hidden;
+}
+
+.play-box .play-bottom #touxiang img {
+  height: 90px;
+  border-radius: 50%;
+  position: absolute;
+  left: -20px;
+  top: 0;
+}
+
+.play-box .play-bottom .play-button {
+  width: 105px;
+  height: auto;
+  position: absolute;
+  left: 120px;
+  top: 20px;
+}
+
+.play-box .play-bottom .play-button #dt {
+  width: 75px;
+  height: 20px;
+  background: url(../images/player_bg.png) no-repeat -453px -55px;
+}
+
+.play-box .play-bottom .play-button #title-bottom {
+  color: #fff;
+  padding: 8px 0 4px 0;
+}
+
+.play-box .play-bottom .play-button #artist {
+  padding: 0 12px 4px 0;
+}
+
+.play-box .play-bottom .play-icon {
+  width: 280px;
+  height: 42px;
+  position: absolute;
+  top: 40px;
+  right: 20px;
+}
+
+.play-box .play-bottom .play-icon span {
+  display: block;
+  float: left;
+}
+
+.play-box .play-bottom .play-icon #pre {
+  width: 40px;
+  height: 28px;
+  margin-top: 5px;
+  background: url(../images/player_bg.png) no-repeat -70px 0px;
+  cursor: pointer;
+}
+
+.play-box .play-bottom .play-icon #pre:hover {
+  background: url(../images/player_bg.png) no-repeat -70px -32px;
+}
+
+.play-box .play-bottom .play-icon .play_bt {
+  background: url(../images/player_bg.png) no-repeat -105px 0px;
+}
+
+.play-box .play-bottom .play-icon .play_bt:hover {
+  background: url(../images/player_bg.png) no-repeat -105px -42px;
+}
+
+.play-box .play-bottom .play-icon .pause_bt {
+  background: url(../images/player_bg.png) no-repeat -333px -88px;
+}
+
+.play-box .play-bottom .play-icon #play {
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+}
+
+.play-box .play-bottom .play-icon #next {
+  width: 40px;
+  height: 28px;
+  margin-top: 5px;
+  background: url(../images/player_bg.png) no-repeat -147px 0px;
+  cursor: pointer;
+}
+
+.play-box .play-bottom .play-icon #next:hover {
+  background: url(../images/player_bg.png) no-repeat -147px -32px;
+}
+
+.play-box .play-bottom .play-icon #play_bn {
+  width: 40px;
+  height: 28px;
+  margin-top: 5px;
+}
+
+.play-box .play-bottom .play-icon .cycle-inin {
+  background: url(../images/player_bg.png) no-repeat -219px 0px;
+}
+
+.play-box .play-bottom .play-icon .cycle-inin:hover {
+  background: url(../images/player_bg.png) no-repeat -219px -32px;
+}
+
+.play-box .play-bottom .play-icon .volume_icon {
+  background: url(../images/player_bg.png) no-repeat -189px -3px;
+}
+
+.play-box .play-bottom .play-icon .volume_icon:hover {
+  background: url(../images/player_bg.png) no-repeat -189px -35px;
+}
+
+.play-box .play-bottom .play-icon .volume_mute {
+  background: url(../images/player_bg.png) no-repeat -189px -63px;
+}
+
+.play-box .play-bottom .play-icon #voice {
+  width: 28px;
+  height: 24px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.play-box .play-bottom .play-icon #heng {
+  position: relative;
+  width: 71px;
+  height: 11px;
+  margin-top: 14px;
+  background: url(../images/player_bg.png) no-repeat -291px -11px;
+  cursor: pointer;
+}
+
+.play-box .play-bottom .play-icon #have-heng {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../images/player_bg.png) no-repeat -291px 0;
+}
+
+.play-box .play-bottom .play-icon #dian {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 6px;
+  height: 11px;
+  background: url(../images/player_bg.png) no-repeat -366px 0px;
+}
+
+.play-box .play-bottom .ci {
+  width: 14px;
+  height: 14px;
+  margin: 8px 10px;
+  background: url(../images/player_bg.png) no-repeat -452px 0;
+  float: right;
+}
+
+.play-box .play-bottom .open-list {
+  width: 47px;
+  height: 28px;
+  background: url(../images/player_bg.png) no-repeat -222px -97px;
+  float: right;
+  cursor: pointer;
+}
+
+.play-box .play-bottom .open-list span {
+  width: 24px;
+  height: 28px;
+  line-height: 28px;
+  color: #000;
+  display: inline-block;
+  text-align: center;
+  margin-left: 23px;
+}
+
+.play-bottom .play-bar {
+  position: absolute;
+  width: 32px;
+  padding: 5px 0;
+  background: #383838;
+  border-radius: 3px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.42);
+  bottom: 25px;
+  left: 366px;
+  z-index: 12;
+  display: none;
+}
+
+.play-bottom span {
+  width: 32px;
+  height: 22px;
+  display: block;
+  cursor: pointer;
+}
+
+.play-bottom .ordered {
+  background: url(../images/player_bg.png) no-repeat -408px 0;
+}
+
+.play-bottom .ordered:hover {
+  background: url(../images/player_bg.png) no-repeat -408px -22px;
+}
+
+.play-bottom .unordered {
+  background: url(../images/player_bg.png) no-repeat -408px -44px;
+}
+
+.play-bottom .unordered:hover {
+  background: url(../images/player_bg.png) no-repeat -408px -66px;
+}
+
+.play-bottom .cycle-single {
+  background: url(../images/player_bg.png) no-repeat -376px 0;
+}
+
+.play-bottom .cycle-single:hover {
+  background: url(../images/player_bg.png) no-repeat -376px -22px;
+}
+
+.play-bottom .cycle-in {
+  background: url(../images/player_bg.png) no-repeat -376px -44px;
+}
+
+.play-bottom .cycle-in:hover {
+  background: url(../images/player_bg.png) no-repeat -376px -66px;
+}
+
+.shou {
+  width: 541px;
+  height: 40px;
+  background: #141414;
+  position: relative;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.shou #shou {
+  width: 30px;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #fff;
+  margin: auto;
+}
+
+.shou .shou-shang::before {
+  content: '⟰';
+  display: block;
+  clear: both;
+}
+
+.shou .shou-xia::after {
+  content: '⟱';
+  display: block;
+  clear: both;
+}
+
+.play-box-shou {
+  top: -621px;
+}
+
+.play-box-shou-two {
+  top: -113px;
+}
+
+.play-box .play-top ul .li_hover {
+  font-size: 14px;
+  transition: font-size .1s ease;
+  background: #000;
+}
+
+.play-box .play-top ul .li_hover .music-button {
+  display: block;
+}

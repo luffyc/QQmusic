@@ -1,0 +1,462 @@
+%reset{
+	padding:0;
+	margin:0;
+}
+body{
+	@extend %reset;
+	color: #8B8B8B;
+    background-color: #FFF;
+    font-size: 12px;
+    line-height: 1.5em;
+    font-family: 'Arial','微软雅黑';
+    &::after{
+    	content:'';
+    	display:block;
+    	clear: both;
+    };
+}
+ul,li{
+	@extend %reset;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+strong{
+	font-weight: normal;
+	display: inline-block;
+}
+
+$basegreen : #12EA6C;
+$basegreen-dan : lighten($basegreen,20%);
+
+$bgColor : black;
+$bgColor-top : lighten($bgColor,40%);
+$bgColor-bottom : lighten($bgColor,20%);
+$bgColor-shou : lighten($bgColor,8%);
+
+@mixin weizhi($position,$top,$left,$right,$bottom){
+	position:$position;
+	left:$left;
+	top:$top;
+	right:$right;
+	bottom:$bottom;
+}
+
+
+$imgs :url(../images/player_bg.png) no-repeat;
+
+$icons :(
+    'xiala':$imgs -270px -100px,
+    'shou':$imgs -270px -100px,
+    'pre':$imgs -70px 0px,
+    'prehover':$imgs -70px -32px,
+    'play':$imgs -105px 0px,
+    'pause':$imgs -333px -88px,
+    'playhover':$imgs -105px -42px,
+    'next':$imgs -147px 0px,
+    'nexthover':$imgs -147px -32px,
+    'cycle':$imgs -219px 0px,
+    'cyclehover':$imgs -219px -32px,
+    'voice':$imgs -189px -3px,
+    'voice-wu':$imgs -189px -63px,
+    'voicehover':$imgs -189px -35px,
+    'heng':$imgs -291px -11px,
+    'have-heng':$imgs -291px 0,
+    'dian':$imgs -366px 0px,
+    'dt':$imgs -453px -55px,
+    'open':$imgs -222px -97px,
+    'ci':$imgs -452px 0,
+    'ordered':$imgs -408px 0,
+    'orderedhover':$imgs -408px -22px,
+    'unordered':$imgs -408px -44px,
+    'unorderedhover':$imgs -408px -66px,
+    'cycle-single':$imgs -376px 0,
+    'cycle-singlehover':$imgs -376px -22px,
+    'cycle-in':$imgs -376px -44px,
+    'cycle-inhover':$imgs -376px -66px,
+    'heart':$imgs 0px -160px,
+    'jiantou':$imgs -15px -160px,
+    'xing':$imgs -65px -160px,
+    'delete':$imgs -50px -123px,
+    'deletehover':$imgs -50px -141px,
+);
+
+.play-box{
+	width:541px;
+	height:661px;
+    @include weizhi(relative,0,0,0,0);
+    margin:auto;
+    transition:top .3s ease;
+    .play-top{
+	    width:100%;
+		height:508px;
+	    background: $bgColor-top;
+	    overflow: auto;
+	    transition:height .5s ease;
+	    #title{
+			width:100%;
+			height:52px;
+			background: $bgColor;
+			line-height: 52px;
+			font-size: 16px;
+			a{
+				color:#fff;
+				margin-left: 30px;
+			}
+			span{
+				float:right;
+				color:#fff;
+				margin-right: 25px;
+				cursor: pointer;
+			}
+			.span{
+				width:20px;
+				height:20px;
+				margin-top: 18px;
+				background: map_get($icons,xiala);
+			}
+		}
+		.divsonglist{
+			width:auto;
+			height:auto;
+		}
+		.play_current{
+			color:$basegreen;
+		}
+		ul li{
+			width:100%;
+			height:35px;
+			line-height: 35px;
+			color:#fff;
+			font-size: 12px;
+			cursor: pointer;
+			position: relative;
+			.music-name{
+				width:244px;
+				height:100%;
+				margin-left: 40px;
+			}
+			.singer-name{
+				width:180px;
+				height:100%;
+			}
+			.music-time{
+				width:24px;
+				height:100%;
+			}
+			.music-button{
+				width:100px;
+				height:50%;
+				position: absolute;
+				right:10px;
+				bottom:10px;
+				z-index: 4;
+				display: none;
+				background: #000;
+				strong{
+					width:17px;
+				    height:23px;
+					margin-right: 5px;
+				}
+			}
+			#heart{
+				background: map_get($icons,heart);
+			}
+			#jiantou{
+                background: map_get($icons,jiantou);
+			}
+			#xing{
+				background: map_get($icons,xing);
+			}
+			#delete{
+				background: map_get($icons,delete);
+				&:hover{
+					background: map_get($icons,deletehover);
+				};
+			}
+		}
+	}
+	.play-bottom{
+		width:100%;
+		height:113px;
+	    background: $bgColor;
+	    @include weizhi(relative,null,null,null,null);
+	    margin:auto;
+	    .walk{
+            width:100%;
+            height:4px;
+			border-top: 1px solid $basegreen-dan;
+			border-bottom: 1px solid $basegreen-dan;
+			position: absolute;
+			left:0;
+			bottom:0;
+			background: $bgColor-bottom;
+	    }
+	    #xia{
+	    	display: block;
+			width:541px;
+            height:4px;
+			position: relative;
+			left:0;
+			top:0;
+			cursor: pointer;
+		}
+		#zhong{
+			width:0;
+			height:6px;
+			position: absolute;
+			left:0;
+			top:0;
+			z-index: 3;
+			background: $basegreen;
+			transition:width 1s linear;
+		}
+		#shang{
+			width:9px;
+			height:9px;
+			display: block;
+		    border-radius: 50%;
+			position: absolute;
+			left:0;
+			top:-2px;
+			z-index: 4;
+			background: white;
+			transition:left 1s linear;
+		}
+		#touxiang{
+			width:80px;
+			height:80px;
+			border-radius: 50%;
+			background: white;
+			@include weizhi(absolute,15px,20px,null,null);
+			overflow: hidden;
+			img{
+				height:90px;
+				border-radius: 50%;
+				@include weizhi(absolute,0,-20px,null,null);
+			}
+		}
+		.play-button{
+			width:105px;
+			height:auto;
+			@include weizhi(absolute,20px,120px,null,null);
+			#dt{
+				width:75px;
+				height:20px;
+				background: map_get($icons,dt);
+			}
+			#title-bottom{
+				color:#fff;
+				padding:8px 0 4px 0;
+			}
+			#artist{
+				padding:0 12px 4px 0;
+			}
+		}
+		.play-icon{
+			width:280px;
+			height:42px;
+			@include weizhi(absolute,40px,null,20px,null);
+			span{
+				display:block;
+				float:left;
+			}
+			#pre{
+				width:40px;
+				height:28px;
+				margin-top:5px;
+				background:  map_get($icons,pre);
+				cursor: pointer;
+				&:hover{
+                    background:  map_get($icons,prehover);
+				};
+			}
+			.play_bt{
+                background: map_get($icons,play);
+                &:hover{
+					background: map_get($icons,playhover);
+				};
+			}
+			.pause_bt{
+				background: map_get($icons,pause);
+			}
+			#play{
+				width:42px;
+				height:42px;
+				cursor: pointer;
+			}
+			#next{
+				width:40px;
+				height:28px;
+				margin-top:5px;
+				background:  map_get($icons,next);
+				cursor: pointer;
+				&:hover{
+					background:  map_get($icons,nexthover);
+				};
+			}
+			#play_bn{
+				width:40px;
+				height:28px;
+				margin-top:5px;
+			}
+			.cycle-inin{
+				background:  map_get($icons,cycle);
+				&:hover{
+					background:  map_get($icons,cyclehover);
+				};
+			}
+			.volume_icon{
+                background:  map_get($icons,voice);
+                &:hover{
+					background:  map_get($icons,voicehover);
+				};
+			}
+			.volume_mute{
+				background:  map_get($icons,voice-wu);
+			}
+			#voice{
+				width:28px;
+				height:24px;
+				margin-top:8px;
+				cursor: pointer;
+			}
+			#heng{
+				position: relative;
+				width:71px;
+				height:11px;
+				margin-top: 14px;
+				background:  map_get($icons,heng);
+				cursor: pointer;
+			}
+			#have-heng{
+				position: absolute;
+				left:0;
+				top:0;
+				width:100%;
+				height:100%;
+				background:  map_get($icons,have-heng);
+			}
+			#dian{
+				position: absolute;
+				left:100%;
+				top:0;
+				width:6px;
+				height:11px;
+				background:  map_get($icons,dian);
+			}
+		}
+		.ci{
+			width:14px;
+			height:14px;
+			margin:8px 10px;
+			background: map_get($icons,ci);
+			float:right;
+		}
+		.open-list{
+			width:47px;
+			height:28px;
+			background: map_get($icons,open);
+			float:right;
+			cursor: pointer;
+			span{
+				width:24px;
+				height:28px;
+				line-height: 28px;
+				color:#000;
+                display: inline-block;
+                text-align: center;
+                margin-left: 23px;
+			}
+		}
+	}
+}
+.play-bottom{
+	.play-bar{
+		position: absolute;
+		width:32px;
+		padding:5px 0;
+		background: #383838;
+		border-radius: 3px;
+		box-shadow: 3px 3px 6px rgba(0,0,0,.42);
+		bottom:25px;
+		left:366px;
+		z-index: 12;
+		display: none;
+	}
+	span{
+		width:32px;
+		height:22px;
+		display: block;
+		cursor: pointer;
+	}
+	.ordered{
+        background: map_get($icons,ordered);
+        &:hover{
+        	background: map_get($icons,orderedhover);
+        };
+	}
+	.unordered{
+		background: map_get($icons,unordered);
+		&:hover{
+			background: map_get($icons,unorderedhover);
+		};
+	}
+	.cycle-single{
+		background: map_get($icons,cycle-single);
+		&:hover{
+			background: map_get($icons,cycle-singlehover);
+		};
+	}
+	.cycle-in{
+		background: map_get($icons,cycle-in);
+		&:hover{
+			background: map_get($icons,cycle-inhover);
+		};
+	}
+}
+.shou{
+	width:541px;
+	height:40px;
+    background: $bgColor-shou;
+    @include weizhi(relative,0,0,0,0);
+    margin:auto;
+    #shou{
+    	width:30px;
+    	height:40px;
+    	line-height: 40px;
+    	cursor: pointer;
+    	font-size: 16px;
+    	color:#fff;
+    	margin:auto;
+    }
+    .shou-shang{
+    	&::before{
+    		content:'⟰';
+    		display: block;
+    	    clear:both;
+    	};
+    }
+    .shou-xia{
+	    &::after{
+	    	content:'⟱';
+	    	display: block;
+	    	clear:both;
+	    };
+	}
+}
+.play-box-shou{
+	top:-621px;
+}
+.play-box-shou-two{
+	top:-113px;
+}
+.play-box .play-top ul .li_hover{
+	font-size: 14px;
+	transition:font-size .1s ease;
+	background: #000;
+	.music-button{
+		display: block;
+	}
+}
