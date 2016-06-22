@@ -12,23 +12,46 @@ $(function(){
     }
 
 
-    $.getJSON('/QQmusic/database.json')
+    $.getJSON('/database.json')
     .done( function(data){
         database = data;
         render();
     });
     
+    var play_bn = document.getElementById('play_bn');
+    $(audio).on('ended',function(){
+        if( play_bn.className === 'cycle-in'){
+          nextsong();
+        }else if(play_bn.className === 'cycle-single'){
+          onsongchange(currentsong);
+        }else if(play_bn.className === 'ordered'){
+          if(currentsong != database.length-1){
+            nextsong();
+          }
+        }else if(play_bn.className === 'unordered'){
+          var rd = Math.floor( Math.random()*database.length );
+          onsongchange(rd);
+        }
+    }) 
+
     
     var currentsong = 0;
-    var onsongchange = function(){
+    var onsongchange = function(a){
+        var b = a || currentsong;
+        audio.src = database[ b ].filename;
     	audio.play();
         $('#divsonglist li').removeClass('play_current');
-        $('#divsonglist li').eq( currentsong ).addClass('play_current');
-        $('#title-bottom').text( database[ currentsong ].title );
-        $('#artist').text( database[ currentsong ].artist );
-        $('#duration').text( database[ currentsong ].duration );
+        $('#divsonglist li').eq( b ).addClass('play_current');
+        $('#title-bottom').text( database[ b ].title );
+        $('#artist').text( database[ b ].artist );
+        $('#duration').text( database[ b ].duration );
     }
-
+    
+    var nextsong = function(){
+        currentsong  += 1;
+        currentsong   = (currentsong == database.length)?0:currentsong;
+        onsongchange(currentsong);
+      };
 
 
     //播放暂停
@@ -104,6 +127,26 @@ $(function(){
     	}
     })
 
+    $('#dian').onclick = function(){
+        console.log(8)
+    }
+
+    //拖动设置音量
+    var heng = document.getElementById('heng');
+    var dian = document.getElementById('dian');
+      dian.onmousedown = function(e){
+        e.preventDefault();
+        document.onmousemove = function(e){
+          var v = (e.clientX - heng.getBoundingClientRect().left)/heng.offsetWidth;
+          if( v >= 0 && v<=1 ){audio.volume = v;}
+        };
+        document.onmouseup = function(){
+          document.onmousemove = null;
+          document.onmouseup = null;
+        };
+      };
+      dian.onclick = function(e){e.stopPropagation();};
+
     
     //歌曲播放时长
     audio.ontimeupdate = function(){
@@ -116,6 +159,24 @@ $(function(){
     $('#xia').on('click',function(e){
         audio.currentTime = audio.duration * ( e.offsetX / $(this).width() );
     })
+    
+
+    //拖动设置播放时间
+    var xia = document.getElementById('xia');
+    var shang = document.getElementById('shang');
+      shang.onmousedown = function(e){
+        e.preventDefault();
+        audio.pause();
+        document.onmousemove = function(e){
+          var t = e.clientX /xia.offsetWidth;
+          if( t >= 0 && t<=1 ){ audio.currentTime = audio.duration*t;}
+        };
+        document.onmouseup = function(){
+          audio.play();
+          document.onmousemove = null;
+          document.onmouseup = null;
+        };
+      };
 
 
     //点击列表操作
@@ -141,23 +202,13 @@ $(function(){
     $('#play_bn').on('click',function(){
         $('.play-bar').css('display','block');
     })
-
+    
     $('.play-bar').on('click','span',function(){
-        var index = $(this).index();
-        // if( index === 0 ){
-        //     $('#play_bn').removeClass('cycle-inin').addClass('ordered');
-        // }
-        // if( index === 1 ){
-        //     $('#play_bn').removeClass('cycle-inin').addClass('unordered');
-        // }
-        // if( index === 2 ){
-        //     $('#play_bn').removeClass('cycle-inin').addClass('cycle-single');
-        // }
-        // if( index === 3 ){
-        //     $('#play_bn').removeClass('cycle-inin').addClass('cycle-in');
-        // }
         $('.play-bar').css('display','none');
+        play_bn.className = this.className;
     })
+
+
 
     //经过列表变化
     $('#divsonglist').on('mouseenter mouseleave','li',function(){

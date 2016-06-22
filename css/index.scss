@@ -80,6 +80,12 @@ $icons :(
     'xing':$imgs -65px -160px,
     'delete':$imgs -50px -123px,
     'deletehover':$imgs -50px -141px,
+    'orderedo':$imgs -291px -32px,
+    'orderedhovero':$imgs -291px -60px,
+    'unorderedo':$imgs -327px -32px,
+    'unorderedhovero':$imgs -327px -60px,
+    'cycle-singleo':$imgs -255px 0,
+    'cycle-singlehovero':$imgs -255px -32px,
 );
 
 .play-box{
@@ -220,7 +226,7 @@ $icons :(
 			position: absolute;
 			left:0;
 			top:-2px;
-			z-index: 4;
+			z-index: 99;
 			background: white;
 			transition:left 1s linear;
 		}
@@ -297,11 +303,30 @@ $icons :(
 				};
 			}
 			#play_bn{
-				width:40px;
+				width:35px;
 				height:28px;
+				margin-right: 5px;
 				margin-top:5px;
 			}
-			.cycle-inin{
+			.ordered{
+		        background: map_get($icons,orderedo);
+		        &:hover{
+		        	background: map_get($icons,orderedhovero);
+		        };
+			}
+			.unordered{
+				background: map_get($icons,unorderedo);
+				&:hover{
+					background: map_get($icons,unorderedhovero);
+				};
+			}
+			.cycle-single{
+				background: map_get($icons,cycle-singleo);
+				&:hover{
+					background: map_get($icons,cycle-singlehovero);
+				};
+			}
+			.cycle-in{
 				background:  map_get($icons,cycle);
 				&:hover{
 					background:  map_get($icons,cyclehover);
@@ -345,6 +370,7 @@ $icons :(
 				width:6px;
 				height:11px;
 				background:  map_get($icons,dian);
+				z-index: 999;
 			}
 		}
 		.ci{

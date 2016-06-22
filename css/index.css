@@ -198,7 +198,7 @@ strong {
   position: absolute;
   left: 0;
   top: -2px;
-  z-index: 4;
+  z-index: 99;
   background: white;
   transition: left 1s linear;
 }
@@ -301,16 +301,41 @@ strong {
 }
 
 .play-box .play-bottom .play-icon #play_bn {
-  width: 40px;
+  width: 35px;
   height: 28px;
+  margin-right: 5px;
   margin-top: 5px;
 }
 
-.play-box .play-bottom .play-icon .cycle-inin {
+.play-box .play-bottom .play-icon .ordered {
+  background: url(../images/player_bg.png) no-repeat -291px -32px;
+}
+
+.play-box .play-bottom .play-icon .ordered:hover {
+  background: url(../images/player_bg.png) no-repeat -291px -60px;
+}
+
+.play-box .play-bottom .play-icon .unordered {
+  background: url(../images/player_bg.png) no-repeat -327px -32px;
+}
+
+.play-box .play-bottom .play-icon .unordered:hover {
+  background: url(../images/player_bg.png) no-repeat -327px -60px;
+}
+
+.play-box .play-bottom .play-icon .cycle-single {
+  background: url(../images/player_bg.png) no-repeat -255px 0;
+}
+
+.play-box .play-bottom .play-icon .cycle-single:hover {
+  background: url(../images/player_bg.png) no-repeat -255px -32px;
+}
+
+.play-box .play-bottom .play-icon .cycle-in {
   background: url(../images/player_bg.png) no-repeat -219px 0px;
 }
 
-.play-box .play-bottom .play-icon .cycle-inin:hover {
+.play-box .play-bottom .play-icon .cycle-in:hover {
   background: url(../images/player_bg.png) no-repeat -219px -32px;
 }
 
@@ -358,6 +383,7 @@ strong {
   width: 6px;
   height: 11px;
   background: url(../images/player_bg.png) no-repeat -366px 0px;
+  z-index: 999;
 }
 
 .play-box .play-bottom .ci {
@@ -489,3 +515,5 @@ strong {
 .play-box .play-top ul .li_hover .music-button {
   display: block;
 }
+
+/*# sourceMappingURL=map/index.css.map */
