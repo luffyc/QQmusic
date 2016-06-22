@@ -12,7 +12,7 @@ $(function(){
     }
 
 
-    $.getJSON('/database.json')
+    $.getJSON('/QQmusic/database.json')
     .done( function(data){
         database = data;
         render();
